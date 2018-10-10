@@ -1,0 +1,4 @@
+Ejemplos para crear archivo vacío:
+cd /var/www/html/imagick/
+
+touch newfile.php
