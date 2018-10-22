@@ -4,7 +4,7 @@
 
   //Load the hero
   //$imagick = new \Imagick(realpath('hero.jpg'));
-  $image = new \Imagick(realpath('hero.jpg'));
+  $image = new \Imagick(realpath('Img/hero.jpg'));
   //$logoUAI = new \Imagick(realpath('uai.jpg'));
   //Draw another image
   $draw = new ImagickDraw();
