@@ -99,7 +99,10 @@
   header("Content-type: image/png");
   echo $image;
 
-  $image->writeImage(realpath("Img/try1.png"));
+  //Save image
+  $image->writeImage("Img/try1.png");
+
+
 
 
  /*
