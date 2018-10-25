@@ -1,14 +1,14 @@
 <?php
   
-  include("poligon.php");
+  include("polygon.php");
 
   //Load the hero
-  $image                = new \Imagick(realpath('Img/hero.jpg'));
-  $logoUAI              = new \Imagick(realpath('Img/logoUAI.png'));
+  $image                = new \Imagick(realpath("Img/hero.jpg"));
+  $logoUAI              = new \Imagick(realpath("Img/logoUAI.png"));
   //Draw another image
   $draw                 = new ImagickDraw();
   $facultyProperties    = new ImagickDraw();
-  $backgroundColor      = '#cc00c0';
+  $backgroundColor      = "#cc00c0";
   $textHeader           = "/ CURSO";
   $programNameRow1      = "Gestión Ágil de Proyectos áéíóúü";
   $programNameRow2      = "para acelerar la transformaciÓn digital";
@@ -17,8 +17,15 @@
   // env is for "Escuela de negocios"
   $facultyCode          = "env";
   $colaborador          = FALSE;
-  $facultyLogo          = new \Imagick(realpath('Img/'.$facultyCode.'-iz.png'));
-  $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+  if($colaborador){
+    $facultyLogo        = new \Imagick(realpath("Img/".$facultyCode."-der.png"));
+    $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 650, 50);
+  }else{
+    $facultyLogo        = new \Imagick(realpath("Img/".$facultyCode."-iz.png"));
+    $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50);
+  }
   $logoUAI->resizeImage(330,100,Imagick::FILTER_LANCZOS,1);
 
   $faculty              = "Escuela de negocios";
@@ -27,43 +34,28 @@
 
   // Faculty box //
   $pointsFaculty = [
-        ['x' => 0, 'y' => 50],
-        ['x' => 150, 'y' => 50], 
-        ['x' => 150, 'y' => 50 + 150],
-        ['x' => 0, 'y' => 50 + 150],
+        ["x" => 0, "y" => 50],
+        ["x" => 150, "y" => 50], 
+        ["x" => 150, "y" => 50 + 150],
+        ["x" => 0, "y" => 50 + 150],
     ];
   $facultyBox = polygon(none, $facultyColor, $pointsFaculty);
-  $image->drawImage($facultyBox);
+  //$image->drawImage($facultyBox);
 
   $image->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-  $image->setImageArtifact('compose:args', "1,0,-0.5,0.5");
-  $image->compositeImage($facultyLogo, Imagick::COMPOSITE_MATHEMATICS, 0, 50);
-  $image->compositeImage($logoUAI, Imagick::COMPOSITE_MATHEMATICS, 1000, 50);
-  /* Faculty text */
-  // Set text color
-  $facultyBox->setFillColor('white');
-  // Set font properties
-  $facultyBox->setFont('Bookman-DemiItalic');
-  $facultyBox->setFontSize( 20 );
-  /* Wrap up text */
-  $str                = wordwrap($faculty, 10,"\r");
-  $str_array          = explode("\n",$str);
-  $padding            = 0;
-  foreach($str_array as $line){
-    $image->annotateImage( $facultyBox, 10, 120 + $padding, 0, $line );
-    $padding = $padding + 50;
-  }
-  //$image->annotateImage($facultyBox, 10, 120, 0, "Caption:".strtoupper($faculty) );
-
+  $image->setImageArtifact("compose:args", "1,0,-0.5,0.5");
+  $logoUAI->resizeImage(300,100,Imagick::FILTER_LANCZOS,1);
+  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 950, 50);
+  
 
 
   /* Header of text box */
-  $headerBackground = $backgroundColor.'cc';
+  $headerBackground = $backgroundColor."cc";
   $pointsHeader = [
-    ['x' => 50, 'y' => 90 * 5],
-    ['x' => 800, 'y' => 90 * 5], 
-    ['x' => 850, 'y' => 100 * 5], 
-    ['x' => 50, 'y' => 100 * 5],
+    ["x" => 50, "y" => 90 * 5],
+    ["x" => 800, "y" => 90 * 5], 
+    ["x" => 850, "y" => 100 * 5], 
+    ["x" => 50, "y" => 100 * 5],
   ];
   $textBoxHeader = polygon(none, $headerBackground, $pointsHeader);
   $image->drawImage($textBoxHeader);
@@ -71,19 +63,19 @@
 
   /* Text box */
   $pointsBox = [
-        ['x' => 50, 'y' => 100 * 5],
-        ['x' => 850, 'y' => 100 * 5], 
-        ['x' => 850, 'y' => 130 * 5],
-        ['x' => 50, 'y' => 130 * 5],
+        ["x" => 50, "y" => 100 * 5],
+        ["x" => 850, "y" => 100 * 5], 
+        ["x" => 850, "y" => 130 * 5],
+        ["x" => 50, "y" => 130 * 5],
     ];
   $textBox = polygon(none, $backgroundColor, $pointsBox);
   $image->drawImage($textBox);
 
   /* Header text */
   // Set text color
-  $draw->setFillColor('white');
+  $draw->setFillColor("white");
   // Set font properties
-  $draw->setFont('fonts/D-DINCondensed-Bold.otf');
+  $draw->setFont("fonts/D-DINCondensed-Bold.otf");
   $draw->setFontSize( 45 );
   //$draw->setTextUnderColor($backgroundColor); 
 // Create text @annotateImage($propeties, $x, $y, $angle, $text)
@@ -94,7 +86,7 @@
   $image->annotateImage($draw, 70, 595, 0, strtoupper($programNameRow2) );
 
   /* Start date */
-  $draw->setFont('fonts/D-DINExp.otf');
+  $draw->setFont("fonts/D-DINExp.otf");
   $draw->setFontSize( 24 );
   $draw->setTextKerning(3);
   $image->annotateImage($draw, 70, 635, 0, strtoupper($startDate) );
@@ -102,12 +94,12 @@
 
   /* Final steps for display */
   // Give image a format
-  $image->setImageFormat('png');
+  $image->setImageFormat("png");
   // Output the image with headers
-  header('Content-type: image/png');
+  header("Content-type: image/png");
   echo $image;
 
-  $image->writeImage(realpath('Img/try1.png'));
+  $image->writeImage(realpath("Img/try1.png"));
 
 
  /*
@@ -197,7 +189,7 @@
     $canvas->compositeimage($imagick, \Imagick::COMPOSITE_OVER, 0, 0);
      
     //Output the final image
-    $canvas->setImageFormat('png');
+    $canvas->setImageFormat("png");
     
 
     header("Content-Type: image/png");
