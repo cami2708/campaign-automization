@@ -3,22 +3,29 @@
   include("poligon.php");
 
   //Load the hero
-  //$imagick = new \Imagick(realpath('hero.jpg'));
-  $image = new \Imagick(realpath('Img/hero.jpg'));
-  //$logoUAI = new \Imagick(realpath('uai.jpg'));
+  $image                = new \Imagick(realpath('Img/hero.jpg'));
+  $logoUAI              = new \Imagick(realpath('Img/logoUAI.png'));
   //Draw another image
-  $draw = new ImagickDraw();
-  $facultyProperties = new ImagickDraw();
-  $backgroundColor = '#cc00c0';
-  $textHeader = "/ CURSO";
-  $programNameRow1 = "Gestión Ágil de Proyectos áéíóúü";
-  $programNameRow2 = "para acelerar la transformaciÓn digital";
-  $startDate = "INICIO: 29 DE OCTUBRE DE 2018";
-  $faculty = "Escuela de negocios";
-  $facultyColor = "#ffff00";
+  $draw                 = new ImagickDraw();
+  $facultyProperties    = new ImagickDraw();
+  $backgroundColor      = '#cc00c0';
+  $textHeader           = "/ CURSO";
+  $programNameRow1      = "Gestión Ágil de Proyectos áéíóúü";
+  $programNameRow2      = "para acelerar la transformaciÓn digital";
+  $startDate            = "INICIO: 29 DE OCTUBRE DE 2018";
+  
+  // env is for "Escuela de negocios"
+  $facultyCode          = "env";
+  $colaborador          = FALSE;
+  $facultyLogo          = new \Imagick(realpath('Img/'.$facultyCode.'-iz.png'));
+  $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+  $logoUAI->resizeImage(330,100,Imagick::FILTER_LANCZOS,1);
+
+  $faculty              = "Escuela de negocios";
+  $facultyColor         = "#ffff00";
   //$programNameRow1 = mb_strtoupper($programNameRow1, "UTF-8")
 
-  /* Faculty box */
+  // Faculty box //
   $pointsFaculty = [
         ['x' => 0, 'y' => 50],
         ['x' => 150, 'y' => 50], 
@@ -27,6 +34,11 @@
     ];
   $facultyBox = polygon(none, $facultyColor, $pointsFaculty);
   $image->drawImage($facultyBox);
+
+  $image->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+  $image->setImageArtifact('compose:args', "1,0,-0.5,0.5");
+  $image->compositeImage($facultyLogo, Imagick::COMPOSITE_MATHEMATICS, 0, 50);
+  $image->compositeImage($logoUAI, Imagick::COMPOSITE_MATHEMATICS, 1000, 50);
   /* Faculty text */
   // Set text color
   $facultyBox->setFillColor('white');
@@ -34,9 +46,9 @@
   $facultyBox->setFont('Bookman-DemiItalic');
   $facultyBox->setFontSize( 20 );
   /* Wrap up text */
-  $str = wordwrap($faculty, 10,"\r");
-  $str_array = explode("\n",$str);
-  $padding = 0;
+  $str                = wordwrap($faculty, 10,"\r");
+  $str_array          = explode("\n",$str);
+  $padding            = 0;
   foreach($str_array as $line){
     $image->annotateImage( $facultyBox, 10, 120 + $padding, 0, $line );
     $padding = $padding + 50;
@@ -95,6 +107,7 @@
   header('Content-type: image/png');
   echo $image;
 
+  $image->writeImage(realpath('Img/try1.png'));
 
 
  /*
