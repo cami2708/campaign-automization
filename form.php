@@ -5,6 +5,7 @@
 	<body>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript">
+			// This code checks if at least one checkbox is check from each type of name
 			jQuery(document).ready(function($) {
 			  var requiredCheckboxes = $(':checkbox[required]');
 			  requiredCheckboxes.on('change', function(e) {
@@ -16,8 +17,8 @@
 		</script>
 		<!-- This file is the form with the information of the program -->
 		<form action="convert-linkedin.php" method="post" enctype="multipart/form-data">
-			Nombre del programa línea 1: <input type="text" name="programName1" maxlength="100" required="true"> <br>
-			Nombre del programa línea 2: <input type="text" name="programName2"> <br>
+			Nombre del programa línea 1: <input type="text" name="programName1" maxlength="100" required="true" style="text-transform:uppercase"> <br>
+			Nombre del programa línea 2: <input type="text" name="programName2" style="text-transform:uppercase"> <br>
 			Tipo de programa: <br>
 			<input type="radio" name="programType" value="curso" required="true"> Curso <br>
 			<input type="radio" name="programType" value="diplomado"> Diplomado <br>
