@@ -17,14 +17,14 @@
 		</script>
 		<!-- This file is the form with the information of the program -->
 		<form action="convert-linkedin.php" method="post" enctype="multipart/form-data">
-			Nombre del programa línea 1: <input type="text" name="programName1" maxlength="100" required="true" style="text-transform:uppercase"> <br>
-			Nombre del programa línea 2: <input type="text" name="programName2" style="text-transform:uppercase"> <br>
+			Nombre del programa línea 1: <input type="text" name="programName1" maxlength="100" required="true" style="text-transform:uppercase" onkeyup="this.value = this.value.toUpperCase();"> <br>
+			Nombre del programa línea 2: <input type="text" name="programName2" style="text-transform:uppercase" onkeyup="this.value = this.value.toUpperCase();"> <br>
 			Tipo de programa: <br>
-			<input type="radio" name="programType" value="curso" required="true"> Curso <br>
-			<input type="radio" name="programType" value="diplomado"> Diplomado <br>
-			<input type="radio" name="programType" value="magíster"> Magíster <br>
-			<input type="radio" name="programType" value="mba"> MBA <br>
-			<input type="radio" name="programType" value="doctorado"> Doctorado <br>
+			<input type="radio" name="programType" value="CURSO" required="true"> Curso <br>
+			<input type="radio" name="programType" value="DIPLOMADO"> Diplomado <br>
+			<input type="radio" name="programType" value="MAGÍSTER"> Magíster <br>
+			<input type="radio" name="programType" value="MBA"> MBA <br>
+			<input type="radio" name="programType" value="DOCTORADO"> Doctorado <br>
 			Facultad: <br>
 			<input type="checkbox" name="facultyCode" value="fic" required="true"> Facultad de Ingeniería y Ciencias <br>
 			<input type="checkbox" name="facultyCode" value="env" required="true"> Escuela de Negocios <br>
