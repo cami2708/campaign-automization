@@ -71,8 +71,8 @@
 
   $image->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
   $image->setImageArtifact("compose:args", "1,0,-0.5,0.5");
-  $logoUAI->scaleImage(300,100,Imagick::FILTER_LANCZOS,1);
-  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 900, 50);
+  $logoUAI->scaleImage(350,100,Imagick::FILTER_LANCZOS,1);
+  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 900-30, 50);
   
 
 
