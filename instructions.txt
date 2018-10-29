@@ -2,3 +2,7 @@ Ejemplos para crear archivo vacío:
 cd /var/www/html/imagick/
 
 touch newfile.php
+
+Para tener muchos permisos
+chmod 777 /var/www/html/imagick/
+
