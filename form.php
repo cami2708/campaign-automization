@@ -26,14 +26,14 @@
 			<input type="radio" name="programType" value="MBA"> MBA <br>
 			<input type="radio" name="programType" value="DOCTORADO"> Doctorado <br>
 			Facultad: <br>
-			<input type="checkbox" name="facultyCode" value="fic" required="true"> Facultad de Ingeniería y Ciencias <br>
-			<input type="checkbox" name="facultyCode" value="env" required="true"> Escuela de Negocios <br>
-			<input type="checkbox" name="facultyCode" value="der" required="true"> Facultad de Derecho <br>
-			<input type="checkbox" name="facultyCode" value="psi" required="true"> Escuela de Psicología <br>
-			<input type="checkbox" name="facultyCode" value="per" required="true"> Escuela de Periodismo <br>
-			<input type="checkbox" name="facultyCode" value="fal" required="true"> Facultad de Artes Liberales <br>
-			<input type="checkbox" name="facultyCode" value="gob" required="true"> Escuela de Gobierno <br>
-			<input type="checkbox" name="facultyCode" value="dis" required="true"> Design Lab <br>
+			<input type="checkbox" name="facultyCode[]" value="fic" required="true"> Facultad de Ingeniería y Ciencias <br>
+			<input type="checkbox" name="facultyCode[]" value="env" required="true"> Escuela de Negocios <br>
+			<input type="checkbox" name="facultyCode[]" value="der" required="true"> Facultad de Derecho <br>
+			<input type="checkbox" name="facultyCode[]" value="psi" required="true"> Escuela de Psicología <br>
+			<input type="checkbox" name="facultyCode[]" value="per" required="true"> Escuela de Periodismo <br>
+			<input type="checkbox" name="facultyCode[]" value="fal" required="true"> Facultad de Artes Liberales <br>
+			<input type="checkbox" name="facultyCode[]" value="gob" required="true"> Escuela de Gobierno <br>
+			<input type="checkbox" name="facultyCode[]" value="dis" required="true"> Design Lab <br>
 			Hero (tamaño recomendado 1200x627px):  <input type="file" name="hero" accept="image/*" required="true"> <br>
 			Fecha de inicio: <input type="date" name="startDate" required="true"><br>
 			Logo colaborador:  <input type="file" name="colaborador" accept="image/*"> <br>
