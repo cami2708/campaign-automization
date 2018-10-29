@@ -35,9 +35,9 @@
     $facultyCode          = "env";
   }
   if(isset($_POST["startDate"])){
-    setlocale(LC_TIME, 'es_CL');
+    setlocale(LC_ALL, 'es_CL.UTF-8');
     $startDate            = "INICIO: ".date("j", strtotime($_POST["startDate"]))
-                            ." DE ".date("F", strtotime($_POST["startDate"]))
+                            ." DE ".strftime('%B', strtotime($_POST["startDate"]))
                             ." DE ".date("Y", strtotime($_POST["startDate"]));
   }else{
     // env is for "Escuela de negocios"
