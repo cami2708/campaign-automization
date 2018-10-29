@@ -54,16 +54,16 @@
   $image->resizeImage(1200,627,Imagick::FILTER_LANCZOS,1);
   if($colaborador){
     $facultyLogo        = new \Imagick(realpath("Img/".$facultyCode."-der.png"));
-    $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+    $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 600, 50);
 
     $logoColaborador    = new \Imagick($_FILES["colaborador"]["tmp_name"]);
-    $logoColaborador->resizeImage(150,100,Imagick::FILTER_LANCZOS,1);
+    $logoColaborador->scaleImage(150,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50);
     
   }else{
     $facultyLogo        = new \Imagick(realpath("Img/".$facultyCode."-iz.png"));
-    $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
+    $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50);
   }
   $logoUAI->resizeImage(330,100,Imagick::FILTER_LANCZOS,1);
