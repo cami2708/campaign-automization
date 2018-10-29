@@ -16,7 +16,7 @@
   if( isset($_FILES["hero"]["name"]) ){
     $image                = new \Imagick($_FILES["hero"]["tmp_name"]);
   }else{
-    $image                = new \Imagick(realpath("Img/hero.jpg") );
+    $image                = new \Imagick( realpath("Img/hero.jpg") );
   }
   if( isset($_FILES["colaborador"]["name"])&&!empty($_FILES["colaborador"]["name"]) ){
     $colaborador          = TRUE;
@@ -46,7 +46,7 @@
   }
   
   //Load the logo
-  $logoUAI                = new \Imagick(realpath("Img/logoUAI.png") );
+  $logoUAI                = new \Imagick( realpath("Img/logoUAI.png") );
   //Draw another image
   $draw                   = new ImagickDraw();
   $backgroundColor        = "#cc00c0";
@@ -54,7 +54,7 @@
 
   $image->resizeImage(1200,627,Imagick::FILTER_LANCZOS,1);
   if($colaborador){
-    $facultyLogo          = new \Imagick(realpath("Img/".$facultyCode."-der.png") );
+    $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-der.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 600, 50);
 
@@ -63,7 +63,7 @@
     $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50);
     
   }else{
-    $facultyLogo          = new \Imagick(realpath("Img/".$facultyCode."-iz.png") );
+    $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-iz.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50);
   }
