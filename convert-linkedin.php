@@ -13,12 +13,12 @@
   }else{
     $programNameRow2      = strtoupper("para acelerar la transformaciÓn digital");
   }
-  if(isset($_FILE["hero"]["name"])){
-    $image                = new \Imagick($_FILE["hero"]["name"]);
+  if(isset($_FILES["hero"]["name"])){
+    $image                = new \Imagick($_FILES["hero"]["tmp_name"]);
   }else{
     $image                = new \Imagick(realpath("Img/hero.jpg"));
   }
-  if(isset($_FILE["colaborador"]["name"])){
+  if(isset($_FILES["colaborador"]["name"])&&!empty($_FILES["colaborador"]["name"])){
     $colaborador          = TRUE;
   }else{
     $colaborador          = FALSE;
@@ -57,7 +57,7 @@
     $facultyLogo->resizeImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 600, 50);
 
-    $logoColaborador    = new \Imagick(realpath("Img/colaborador.png"));
+    $logoColaborador    = new \Imagick($_FILES["colaborador"]["tmp_name"]);
     $logoColaborador->resizeImage(150,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50);
     
