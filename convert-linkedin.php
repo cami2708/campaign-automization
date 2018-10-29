@@ -56,7 +56,7 @@
   if($colaborador){
     $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-der.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
-    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 600, 50);
+    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 665, 50);
 
     $logoColaborador      = new \Imagick($_FILES["colaborador"]["tmp_name"]);
     $logoColaborador->scaleImage(150,100,Imagick::FILTER_LANCZOS,1);
@@ -67,12 +67,11 @@
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50);
   }
-  $logoUAI->resizeImage(330,100,Imagick::FILTER_LANCZOS,1);
 
   $image->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
   $image->setImageArtifact("compose:args", "1,0,-0.5,0.5");
   $logoUAI->scaleImage(350,100,Imagick::FILTER_LANCZOS,1);
-  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 900-30, 50);
+  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 935, 50);
   
 
 
@@ -127,7 +126,7 @@
   echo $image;
 
   //Save image
-  //$image->writeImage("Img/try1.png");
+  $image->writeImage("Img/pieza.png");
 
 
 ?>
