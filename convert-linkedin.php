@@ -44,12 +44,19 @@
     // env is for "Escuela de negocios"
     $startDate            = "INICIO: 29 DE OCTUBRE DE 2018";
   }
-  
+  if( isset($_POST["color"]) ){
+    
+    $backgroundColor      = $_POST["color"];
+  }else{
+    // #cc00c0 es un rosado
+    $backgroundColor      = "#cc00c0";
+  }
+
   //Load the logo
   $logoUAI                = new \Imagick( realpath("Img/logoUAI.png") );
   //Draw another image
   $draw                   = new ImagickDraw();
-  $backgroundColor        = "#cc00c0";
+  
   
 
   $image->resizeImage(1200,627,Imagick::FILTER_LANCZOS,1);

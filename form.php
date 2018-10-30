@@ -37,6 +37,18 @@
 			Hero (tamaño recomendado 1200x627px):  <input type="file" name="hero" accept="image/*" required="true"> <br>
 			Fecha de inicio: <input type="date" name="startDate" required="true"><br>
 			Logo colaborador:  <input type="file" name="colaborador" accept="image/*"> <br>
+			Tema: 
+			<select name="color"> 
+				<option value="#0073A3">Finanzas</option>
+				<option value="#E8CF00">Marketing y ventas</option>
+				<option value="#6F9A2F">Estrategia e innovación</option>
+				<option value="#9663A0">Liderazgo</option>
+				<option value="#F6A342">Personas y organización</option>
+				<option value="#B81211">Inmobiliario</option>
+				<option value="#C53D7A">Operaciones</option>
+				<option value="#DD480D">Gobierno corporativo</option>
+				<option value="#FBBD00">Empresas familiares</option>
+			</select><br>
 			<input type="submit" value="Enviar"> 
 	
 		</form>
