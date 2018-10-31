@@ -51,7 +51,12 @@
     // #cc00c0 es un rosado
     $backgroundColor      = "#cc00c0";
   }
-  
+
+  $spaces                 = 0;
+  if( empty($programNameRow2) || $programNameRow2==" " ){
+    $spaces               = 50;
+  }
+
   //Load the logo
   $logoUAI                = new \Imagick( realpath("Img/logoUAI.png") );
   //Draw another image
@@ -95,10 +100,10 @@
   /* Header of text box */
   $headerBackground = $backgroundColor."cc";
   $pointsHeader = [
-    ["x" => 50, "y" => 90 * 5 - 55],
-    ["x" => 800, "y" => 90 * 5 - 55], 
-    ["x" => 850, "y" => 100 * 5 - 50], 
-    ["x" => 50, "y" => 100 * 5 - 50],
+    ["x" => 50, "y" => 90 * 5 - 55 + $spaces],
+    ["x" => 800, "y" => 90 * 5 - 55 + $spaces], 
+    ["x" => 850, "y" => 100 * 5 - 50 + $spaces], 
+    ["x" => 50, "y" => 100 * 5 - 50 + $spaces],
   ];
   $textBoxHeader = polygon(none, $headerBackground, $pointsHeader);
   $image->drawImage($textBoxHeader);
@@ -106,8 +111,8 @@
 
   /* Text box */
   $pointsBox = [
-        ["x" => 50, "y" => 100 * 5 - 50],
-        ["x" => 850, "y" => 100 * 5 - 50], 
+        ["x" => 50, "y" => 100 * 5 - 50 + $spaces],
+        ["x" => 850, "y" => 100 * 5 - 50 + $spaces], 
         ["x" => 850, "y" => 130 * 5 - 50],
         ["x" => 50, "y" => 130 * 5 - 50],
     ];
@@ -121,9 +126,9 @@
   $draw->setFontSize( 45 );
   //$draw->setTextUnderColor($backgroundColor); 
   // Create text @annotateImage($propeties, $x, $y, $angle, $text)
-  $image->annotateImage($draw, 70, 490 - 50, 0, $textHeader);
+  $image->annotateImage($draw, 70, 490 - 50 + $spaces, 0, $textHeader);
   /* Program name*/
-  $image->annotateImage($draw, 70, 550 - 50, 0, $programNameRow1);
+  $image->annotateImage($draw, 70, 550 - 50 + $spaces, 0, $programNameRow1);
   $image->annotateImage($draw, 70, 595 - 50, 0, $programNameRow2);
   /* Start date */
   $draw->setFont("fonts/D-DINExp.otf");
