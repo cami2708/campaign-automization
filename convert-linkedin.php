@@ -70,7 +70,7 @@
   $image->scaleImage(1200 + $externalWidth, 627 + $externalHeigth, Imagick::FILTER_LANCZOS,1);
   $image->cropImage(1200, 627, 0, 0);
   //Transform to grayscale color the hero
-  $image->transformimagecolorspace(2);
+  //$image->transformimagecolorspace(2);
 
   if($colaborador){
     $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-der.png") );
