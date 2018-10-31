@@ -51,37 +51,45 @@
     // #cc00c0 es un rosado
     $backgroundColor      = "#cc00c0";
   }
-
+  
   //Load the logo
   $logoUAI                = new \Imagick( realpath("Img/logoUAI.png") );
   //Draw another image
   $draw                   = new ImagickDraw();
   
-  
+  $externalWidth          = 0;
+  $externalHeigth         = 0;
+  $imageDimension         = $image->getImageGeometry();
+  $imageWidth             = $imageDimension['width'];
+  $imageHeigth            = $imageDimension['height']; 
+  if($w/1200 < $h/627){
+    $externalWidth        = 500;
+  }else{
+    $externalHeigth       = 500;
+  }
+  $image->scaleImage(1200 + $externalWidth, 627 + $externalHeigth, Imagick::FILTER_LANCZOS,1);
+  $image->cropImage(1200, 627, 0, 0);
 
-  $image->resizeImage(1200,627,Imagick::FILTER_LANCZOS,1);
   if($colaborador){
     $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-der.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
-    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 665, 50);
-
+    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 665-25, 50/2);
     $logoColaborador      = new \Imagick($_FILES["colaborador"]["tmp_name"]);
     $logoColaborador->scaleImage(150,100,Imagick::FILTER_LANCZOS,1);
-    $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50);
+    $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50/2);
     
   }else{
     $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-iz.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
-    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50);
+    $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 0, 50/2);
   }
+
 
   $image->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
   $image->setImageArtifact("compose:args", "1,0,-0.5,0.5");
   $logoUAI->scaleImage(350,100,Imagick::FILTER_LANCZOS,1);
-  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 935, 50);
+  $image->compositeImage($logoUAI, \Imagick::COMPOSITE_DEFAULT, 935-25, 50/2);
   
-
-
   /* Header of text box */
   $headerBackground = $backgroundColor."cc";
   $pointsHeader = [
@@ -92,7 +100,7 @@
   ];
   $textBoxHeader = polygon(none, $headerBackground, $pointsHeader);
   $image->drawImage($textBoxHeader);
-
+  
 
   /* Text box */
   $pointsBox = [
@@ -103,7 +111,6 @@
     ];
   $textBox = polygon(none, $backgroundColor, $pointsBox);
   $image->drawImage($textBox);
-
   /* Header text */
   // Set text color
   $draw->setFillColor("white");
@@ -111,18 +118,17 @@
   $draw->setFont("fonts/D-DINCondensed-Bold.otf");
   $draw->setFontSize( 45 );
   //$draw->setTextUnderColor($backgroundColor); 
-// Create text @annotateImage($propeties, $x, $y, $angle, $text)
+  // Create text @annotateImage($propeties, $x, $y, $angle, $text)
   $image->annotateImage($draw, 70, 490 - 50, 0, $textHeader);
-
   /* Program name*/
   $image->annotateImage($draw, 70, 550 - 50, 0, $programNameRow1);
   $image->annotateImage($draw, 70, 595 - 50, 0, $programNameRow2);
-
   /* Start date */
   $draw->setFont("fonts/D-DINExp.otf");
   $draw->setFontSize( 24 );
   $draw->setTextKerning(3);
   $image->annotateImage( $draw, 70, 635 - 50, 0, strtoupper($startDate) );
+  
 
 
   /* Final steps for display */
@@ -131,9 +137,10 @@
   // Output the image with headers
   header("Content-type: image/png");
   echo $image;
-
   //Save image
   $image->writeImage("Img/pieza.png");
+
+
 
 
 ?>
