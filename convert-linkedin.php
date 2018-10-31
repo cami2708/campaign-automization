@@ -69,13 +69,15 @@
   }
   $image->scaleImage(1200 + $externalWidth, 627 + $externalHeigth, Imagick::FILTER_LANCZOS,1);
   $image->cropImage(1200, 627, 0, 0);
+  //Transform to grayscale color the hero
+  $image->transformimagecolorspace(2);
 
   if($colaborador){
     $facultyLogo          = new \Imagick( realpath("Img/".$facultyCode."-der.png") );
     $facultyLogo->scaleImage(259,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($facultyLogo, \Imagick::COMPOSITE_DEFAULT, 665-25, 50/2);
     $logoColaborador      = new \Imagick($_FILES["colaborador"]["tmp_name"]);
-    $logoColaborador->scaleImage(150,100,Imagick::FILTER_LANCZOS,1);
+    $logoColaborador->scaleImage(350,100,Imagick::FILTER_LANCZOS,1);
     $image->compositeImage($logoColaborador, \Imagick::COMPOSITE_DEFAULT, 0, 50/2);
     
   }else{
